@@ -1,0 +1,121 @@
+body {
+  font-family: sans-serif, cursive;
+  text-align: center;
+  background-color: gray;
+}
+
+h1 {
+  margin-top: 20px;
+  text-transform: uppercase;
+  color: lawngreen;
+  font-family: sans-serif, cursive;
+}
+
+.board {
+  display: grid;
+  grid-template-columns: repeat(3, 100px);
+  grid-gap: 5px;
+  margin: 50px auto;
+  width: 320px;
+  position: relative;
+}
+
+.cell {
+  width: 100px;
+  height: 100px;
+  background-color: hotpink;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2em;
+  cursor: pointer;
+}
+
+button {
+  margin-top: 20px;
+  padding: 10px;
+  font-size: 1.5em;
+  cursor: pointer;
+  background-color: transparent;
+  color: lawngreen;
+  border: lawngreen 1px solid;
+}
+
+.strike {
+  position: absolute;
+  background-color: black;
+}
+
+.strike-row-1 {
+  width: 100%;
+  height: 4px;
+  top: 15%;
+}
+
+.strike-row-2 {
+  width: 100%;
+  height: 4px;
+  top: 48%;
+}
+
+.strike-row-3 {
+  width: 100%;
+  height: 4px;
+  top: 83%;
+}
+
+.strike-column-1 {
+  height: 100%;
+  width: 4px;
+  left: 15%;
+}
+
+.strike-column-2 {
+  height: 100%;
+  width: 4px;
+  left: 48%;
+}
+
+.strike-column-3 {
+  height: 100%;
+  width: 4px;
+  left: 83%;
+}
+
+.strike-diagonal-1 {
+  width: 90%;
+  height: 4px;
+  top: 50%;
+  left: 5%;
+  transform: skewY(45deg);
+}
+
+.strike-diagonal-2 {
+  width: 90%;
+  height: 4px;
+  top: 50%;
+  left: 5%;
+  transform: skewY(-45deg);
+}
+
+#game-over-grid {
+  align-items: center;
+  border: hotpink 8px solid;
+  padding: 50px;
+  width: 100%;
+  margin-top: 50px;
+}
+
+h2 {
+  color: lawngreen;
+  font-size: 3em;
+  margin-top: -100px;
+}
+
+.hidden {
+  display: none;
+}
+
+.visible {
+  display: block;
+}
