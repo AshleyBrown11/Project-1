@@ -16,3 +16,5 @@ Javascript was used to add arrow functions, arrays, sounds, and eventlisteners i
 4. If the board is full and no player has won, the game is a cat.
 5. Click the "Start New Round" button to reset the board and start a new round.
 6. Keep playing multiple rounds until you decide to stop.
+
+Improvements I would like to make is to add sound and add pictures in place of the "X" and "O". I would also like to add the strike function when a winner has been declared. 
