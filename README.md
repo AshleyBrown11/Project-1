@@ -18,3 +18,4 @@ Javascript was used to add arrow functions, arrays, sounds, and eventlisteners i
 6. Keep playing multiple rounds until you decide to stop.
 
 Improvements I would like to make is to add sound and add pictures in place of the "X" and "O". I would also like to add the strike function when a winner has been declared. 
+
