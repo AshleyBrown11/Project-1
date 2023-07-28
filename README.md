@@ -8,6 +8,14 @@ CSS was used to create the grid and style the game.
 
 Javascript was used to add arrow functions, arrays, sounds, and eventlisteners in order for us to be able to play the 2 player game. 
 
+## Requirements
+1. Must Be a two player game(against another player or computer)
+2. Must contain a win state
+3. A lose state
+5. A way to keep playing if the game is not over
+6. Multiple rounds to play
+
+
 ## How to Play
 
 1. Open `index.html` in your web browser.
@@ -17,5 +25,8 @@ Javascript was used to add arrow functions, arrays, sounds, and eventlisteners i
 5. Click the "Start New Round" button to reset the board and start a new round.
 6. Keep playing multiple rounds until you decide to stop.
 
-Improvements I would like to make is to add sound and add pictures in place of the "X" and "O". I would also like to add the strike function when a winner has been declared. 
+## Improvements 
+I would like to make is to add sound and add pictures in place of the "X" and "O". I would also like to add the strike function when a winner has been declared. 
 
+## Challenges
+Could not get the checkWinner function to operate,there were times when the the clicks or button would not work. 
