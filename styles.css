@@ -55,21 +55,4 @@ h2 {
   margin-top: -100px;
 }
 
-.hidden {
-  display: none;
-}
-
-.visible {
-  display: block;
-}
-
-.x-hover:hover::after {
-  content: "X";
-  opacity: 0.4;
-}
-
-.o-hover:hover::after {
-  content: "O";
-  opacity: 0.4;
-}
 

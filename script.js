@@ -1,129 +1,97 @@
 // Defining Game Parts
+const Player_1 = "X";
+const Player_2 = "O";
+let currentPlayer = "X";
+
+// Elements
 const cells = document.querySelectorAll(".cell");
-const PLAYER_X = "X";
-const PLAYER_O = "O";
-let turn = PLAYER_X;
-
-const board = Array(cells.length);
-board.fill(null);
-
-//Elements
-const strike = document.getElementById("strike");
-const gameOverGrid = document.getElementById("game-over-grid");
 const gameOverText = document.getElementById("game-over-text");
 const restartBtn = document.getElementById("restartBtn");
-restartBtn.addEventListener("click", resetBoard);
 
-//Sounds
-// const gameOverSound = new Audio("sounds/game_over.wav");
-// const clickSound = new Audio("sounds/click.wav");
 
-cells.forEach((cell) => cell.addEventListener("click", cellClick));
+// Sounds
+//const clickSound = new Audio("sounds/arcade-click.wav");
+//const youLoseSound = new Audio("sounds/fairytale-game-over.wav");
+
+
+// Initialize Game
+const winCombinations = [
+    // Rows
+    { combo: [0, 1, 2]},
+    { combo: [3, 4, 5]},
+    { combo: [6, 7, 8]},
+    // Columns
+    { combo: [0, 3, 6]},
+    { combo: [1, 4, 7]},
+    { combo: [2, 5, 8]},
+    // Diagonals
+    { combo: [0, 4, 8]},
+    { combo: [2, 4, 6]}
+  ];
+
+  let running = false;
 
 // Game Functions
-
-function setHoverText() {
-  //remove all hover text
-  cells.forEach((cell) => {
-    cell.classList.remove("x-hover");
-    cell.classList.remove("o-hover");
-  });
-
-  const hoverClass = `${turn.toLowerCase()}-hover`;
-
-  cells.forEach((cell) => {
-    if (cell.innerText == "") {
-      cell.classList.add(hoverClass);
-    }
-  });
-}
-
-setHoverText();
+startGame();
+function startGame() {
+    cells.forEach(cell => cell.addEventListener("click", cellClick));
+}    
 
 function cellClick(event) {
-  if (gameOverGrid.classList.contains("visible")) {
-    return;
-  }
-
-  const cell = event.target;
-  const cellNumber = cell.dataset.index;
-  if (cell.innerText != "") {
-    return;
-  }
-
-  if (turn === PLAYER_X) {
-    cell.innerText = PLAYER_X;
-    board[cellNumber - 1] = PLAYER_X;
-    turn = PLAYER_O;
-  } else {
-    cell.innerText = PLAYER_O;
-    board[cellNumber - 1] = PLAYER_O;
-    turn = PLAYER_X;
-  }
-
-//   clickSound.play();
-  setHoverText();
-  checkWinner();
+    const id = event.target.id;
+    if (!cells[id]) {
+    cells[id] = currentPlayer;
+    event.target.innerText = currentPlayer;
+    }
 }
 
-// function checkWinner() {
-//   //Check for a winner
-//   for (const winCombination of winCombinations) {
-//     //Object Destructuring
-//     const {combo} = winCombination;
-//     const cellValue1 = board[combo[1]- 1];
-//     const cellValue2 = board[combo[2] - 1];
-//     const cellValue3 = board[combo[3] - 1];
+checkWinner();
+function checkWinner() {
+    let wonRound = false;
+//   console.log(winCombinations[0].combo);
+    for (let i = 0; i < 8; i++) {
+      const combo = winCombinations[i];
+      const cellA = combo[0];
+      const cellB = combo[1];
+      const cellC = combo[2];
 
-//     if (
-//       cellValue1 != null &&
-//       cellValue1 === cellValue2 &&
-//       cellValue1 === cellValue3
-//     ) {
-//       gameOver(cellValue1);
-//       return;
-//     }
-//   }
 
-  //Check for a draw
-  const allCellFilledIn = board.every((cell => cell !== null));
-  if (allCellFilledIn) {
-    gameOver(null);
+      if (cellA == "" || cellB == "" || cellC == "") {
+        continue;
+      }
+      if (cellA == cellB && cellB == cellC) {
+        wonRound = true;
+        break;
+      }
+    }
+
+    if (wonRound) {
+      gameOverText.textContent = `${currentPlayer} wins!`;
+      running = false;
+      
+    } else if (!options.includes("")) {
+      gameOverText.textContent = `Cat Game!`;
+      running = false;
+     
+    } else {
+      changePlayer();
+
+    }
+}
+    function changePlayer() {
+    currentPlayer = (currentPlayer == "X") ? "O" : "X";
+    // console.log(gameOverText)
+    gameOverText.textContent = `${currentPlayer}'s turn`;
   }
 
+restartBtn.addEventListener("click", resetBoard);
+gameOverText.textContent = `${currentPlayer}'s turn`;
+running = true;
 
-function gameOver(winnerText) {
-  let text = "Cat Game!";
-  if (winnerText != null) {
-    text = `Winner is ${winnerText}!`;
-  }
-  gameOverGrid.className = "visible";
-  gameOverText.innerText = text;
-// gameOverSound.play();
+function updateCell(cell,index) {
+    options[index] = currentPlayer;
+    cell.innerText = currentPlayer;
 }
-
-function startGame() {
-  gameOverGrid.className = "hidden";
-  board.fill(null);
-  cells.forEach((cell) => (cell.innerText = ""));
-  turn = PLAYER_X;
-  setHoverText();
-}
-
-const winCombinations = [
-  // Rows
-  { combo: [0, 1, 2]},
-  { combo: [3, 4, 5]},
-  { combo: [6, 7, 8]},
-  // Columns
-  { combo: [0, 3, 6]},
-  { combo: [1, 4, 7]},
-  { combo: [2, 5, 8]},
-  // Diagonals
-  { combo: [0, 4, 8]},
-  { combo: [2, 4, 6]}
-];
-
 function resetBoard() {
     cells.forEach((cell) => (cell.innerText = " "));
   }
