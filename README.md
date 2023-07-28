@@ -6,7 +6,7 @@ HTML was used first to link both my css and javascript as well as to add my div 
 
 CSS was used to create the grid and style the game.
 
-Javascript was used to add arrow functions, arrays, sounds, and eventlisteners in order for us to be able to play the 2 player game. 
+Javascript was used to add conditional statements, array methods, sounds, and eventlisteners in order for us to be able to play the 2 player game. 
 
 ## Requirements
 1. Must Be a two player game(against another player or computer)
